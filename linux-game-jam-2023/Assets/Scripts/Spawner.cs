@@ -19,6 +19,7 @@ public class Spawner : MonoBehaviour {
         currentTime += Time.deltaTime;
         if (currentTime >= spawnFreq) {
             Instantiate(toSpawn, transform.position, transform.rotation);
+            currentTime = 0;
         }
     }
 }
