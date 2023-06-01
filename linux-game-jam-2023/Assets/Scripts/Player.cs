@@ -10,9 +10,13 @@ public class Player : MonoBehaviour {
 
     public float experience = 0f;
 
+    public UIManager ui;
+
     // Start is called before the first frame update
     void Start() {
         rb = GetComponent<Rigidbody2D>();
+
+        ui = GameObject.FindWithTag("UI").GetComponent<UIManager>();
     }
 
     // Update is called once per frame
@@ -33,15 +37,17 @@ public class Player : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D c) {
         if (c.gameObject.CompareTag("Experience")) {
-            c.enabled = false;
-            c.gameObject.GetComponent<Experience>().followPlayer = true;
+            c.gameObject.GetComponent<Experience>().SetFollowPlayer();
         }
     }
 
     void OnCollisionEnter2D(Collision2D c) {
         if (c.gameObject.CompareTag("Experience")) {
-            experience += c.gameObject.GetComponent<Experience>().exp;
+            float exp = c.gameObject.GetComponent<Experience>().exp;
+            experience += exp;
             Destroy(c.gameObject);
+
+            ui.SetExperience(experience);
         }
     }
 
@@ -49,6 +55,8 @@ public class Player : MonoBehaviour {
         if (c.gameObject.CompareTag("Enemy")) {
             Enemy enemy = c.gameObject.GetComponent<Enemy>();
             health -= enemy.damageRate * Time.deltaTime;
+
+            ui.SetHealth(health);
         }
     }
 }

@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Projectile
   - Experience
+  - UI
   layers:
   - Default
   - TransparentFX
