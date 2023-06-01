@@ -26,5 +26,4 @@ public class HealthPickup : MonoBehaviour {
             Destroy(this.gameObject);
         }
     }
-
 }

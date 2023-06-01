@@ -29,5 +29,4 @@ public class Experience : MonoBehaviour {
             Destroy(this.gameObject);
         }
     }
-
 }
