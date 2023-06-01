@@ -43,8 +43,8 @@ public class Enemy : MonoBehaviour {
 
     public void ApplyDamage(float dmg) {
         health -= dmg;
-        if (dmg <= 0) {
-            Instantiate(ExperienceDrop, transform.position, new Quaternion(0, 0, 0, 0));
+        if (health <= 0) {
+            // Instantiate(ExperienceDrop, transform.position, new Quaternion(0, 0, 0, 0));
             Destroy(this.gameObject);
         }
     }
