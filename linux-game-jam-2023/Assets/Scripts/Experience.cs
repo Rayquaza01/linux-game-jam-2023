@@ -10,9 +10,12 @@ public class Experience : MonoBehaviour {
     public string playerTag = "Player";
     GameObject player;
 
+    CircleCollider2D col;
+
     // Start is called before the first frame update
     void Start() {
         player = GameObject.FindWithTag(playerTag);
+        col = GetComponent<CircleCollider2D>();
     }
 
     // Update is called once per frame
@@ -27,5 +30,11 @@ public class Experience : MonoBehaviour {
 
     public void SetExperience(float e) {
         exp = e;
+    }
+
+    public void SetFollowPlayer() {
+        followPlayer = true;
+        col.isTrigger = false;
+        col.radius = 0.5f;
     }
 }
