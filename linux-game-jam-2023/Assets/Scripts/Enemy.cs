@@ -44,7 +44,9 @@ public class Enemy : MonoBehaviour {
     public void ApplyDamage(float dmg) {
         health -= dmg;
         if (health <= 0) {
-            Instantiate(ExperienceDrop, transform.position, new Quaternion(0, 0, 0, 0));
+            GameObject e = Instantiate(ExperienceDrop, transform.position, new Quaternion(0, 0, 0, 0));
+            // set exp on orb to what enemy is set to drop
+            e.GetComponent<Experience>().exp = XPAmount;
             Destroy(this.gameObject);
         }
     }
