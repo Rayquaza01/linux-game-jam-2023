@@ -8,6 +8,9 @@ TagManager:
   - Projectile
   - Experience
   - UI
+  - Vacuum
+  - Health
+  - KillAll
   layers:
   - Default
   - TransparentFX
