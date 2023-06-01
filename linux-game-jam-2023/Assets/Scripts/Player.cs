@@ -35,28 +35,31 @@ public class Player : MonoBehaviour {
         }
     }
 
-    void OnTriggerEnter2D(Collider2D c) {
-        if (c.gameObject.CompareTag("Experience")) {
-            c.gameObject.GetComponent<Experience>().SetFollowPlayer();
-        }
+    public void DamagePlayer(float dmg) {
+        health -= dmg;
+
+        ui.SetHealth(health);
     }
 
-    void OnCollisionEnter2D(Collision2D c) {
-        if (c.gameObject.CompareTag("Experience")) {
-            float exp = c.gameObject.GetComponent<Experience>().exp;
-            experience += exp;
-            Destroy(c.gameObject);
-
-            ui.SetExperience(experience);
+    public void HealPlayer(float heal) {
+        health += heal;
+        if (health >= 100f) {
+            health = 100f;
         }
+
+        ui.SetHealth(health);
+    }
+
+    public void AddExperience(float exp) {
+        experience += exp;
+
+        ui.SetExperience(experience);
     }
 
     void OnCollisionStay2D(Collision2D c) {
         if (c.gameObject.CompareTag("Enemy")) {
             Enemy enemy = c.gameObject.GetComponent<Enemy>();
-            health -= enemy.damageRate * Time.deltaTime;
-
-            ui.SetHealth(health);
+            DamagePlayer(enemy.damageRate * Time.deltaTime);
         }
     }
 }
