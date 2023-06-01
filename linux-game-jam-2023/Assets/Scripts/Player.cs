@@ -6,6 +6,8 @@ public class Player : MonoBehaviour {
     public float speed = 5f;
     Rigidbody2D rb;
 
+    public float health = 100f;
+
     // Start is called before the first frame update
     void Start() {
         rb = GetComponent<Rigidbody2D>();
@@ -24,6 +26,15 @@ public class Player : MonoBehaviour {
         }
         if (Input.GetKey(KeyCode.A)) {
             transform.position += -transform.right * speed * Time.deltaTime;
+        }
+
+        Debug.Log("Health: " + health);
+    }
+
+    void OnCollisionStay2D(Collision2D c) {
+        if (c.gameObject.CompareTag("Enemy")) {
+            Enemy enemy = c.gameObject.GetComponent<Enemy>();
+            health -= enemy.damageRate * Time.deltaTime;
         }
     }
 }
