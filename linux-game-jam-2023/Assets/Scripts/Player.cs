@@ -33,6 +33,7 @@ public class Player : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D c) {
         if (c.gameObject.CompareTag("Experience")) {
+            c.enabled = false;
             c.gameObject.GetComponent<Experience>().followPlayer = true;
         }
     }
