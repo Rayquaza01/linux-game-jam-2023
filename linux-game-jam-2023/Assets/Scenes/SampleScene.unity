@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 2103394590}
   - component: {fileID: 2103394592}
   - component: {fileID: 2103394593}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -330,6 +330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   health: 100
+  experience: 0
 --- !u!61 &2103394592
 BoxCollider2D:
   m_ObjectHideFlags: 0

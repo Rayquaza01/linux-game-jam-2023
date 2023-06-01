@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 2954846504075611880}
   - component: {fileID: 4021017609049574525}
   - component: {fileID: 1886955617343959848}
-  m_Layer: 0
+  - component: {fileID: 7702981312916941071}
+  m_Layer: 8
   m_Name: Experience
   m_TagString: Experience
   m_Icon: {fileID: 0}
@@ -99,6 +100,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exp: 1
+  speed: 5
+  followPlayer: 0
+  playerTag: Player
 --- !u!58 &1886955617343959848
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -114,4 +118,20 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.5
+--- !u!58 &7702981312916941071
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4841052670928205925}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2.5
