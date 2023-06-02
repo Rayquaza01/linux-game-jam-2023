@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour {
     public GameObject ExperienceDrop;
 
     // amount of experience enemy drops on kil;
-    public float XPAmount = 1f;
+    public int XPAmount = 1;
     // amount of health enemy has
     public float health = 10f;
     // amount of damage enemy does to player in a second

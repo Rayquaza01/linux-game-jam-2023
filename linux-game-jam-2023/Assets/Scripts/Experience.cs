@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Experience : MonoBehaviour {
-    public float exp = 1f;
+    public int exp = 1;
 
     public string playerTag = "Player";
     GameObject player;
@@ -19,7 +19,7 @@ public class Experience : MonoBehaviour {
     void Update() {
     }
 
-    public void SetExperience(float e) {
+    public void SetExperience(int e) {
         exp = e;
     }
 
