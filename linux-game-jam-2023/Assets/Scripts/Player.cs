@@ -28,8 +28,6 @@ public class Player : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         rb = GetComponent<Rigidbody2D>();
-
-        ui = GameObject.FindWithTag("UI").GetComponent<UIManager>();
     }
 
     // Update is called once per frame
