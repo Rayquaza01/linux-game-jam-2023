@@ -14,6 +14,8 @@ public class Player : MonoBehaviour {
 
     // amount of exp orbs player has picked up
     public int experience = 0;
+    // amount of exp needed to level up
+    public int expThreshold = 10;
     // player's current level
     public int level = 1;
 
@@ -22,6 +24,7 @@ public class Player : MonoBehaviour {
     public Projectile projectileStats;
 
     public UIManager ui;
+    public GameObject levelUpUI;
 
     public bool paused;
 
@@ -48,11 +51,7 @@ public class Player : MonoBehaviour {
         }
 
         if (Input.GetKeyDown(KeyCode.Escape)) {
-            if (Time.timeScale == 0) {
-                Time.timeScale = 1;
-            } else {
-                Time.timeScale = 0;
-            }
+            TogglePause();
         }
 
         if (Input.GetMouseButtonDown(0) && !paused) {
@@ -77,6 +76,7 @@ public class Player : MonoBehaviour {
 
     public void UpgradeMaxHealth(float amt) {
         maxHealth += amt;
+        HealPlayer(amt);
 
         ui.SetMaxHealth(maxHealth);
     }
@@ -106,6 +106,22 @@ public class Player : MonoBehaviour {
         experience += exp;
 
         ui.SetExperience(experience);
+
+        if (experience >= expThreshold) {
+            LevelUp();
+        }
+    }
+
+    public void LevelUp() {
+        SetPause(true);
+        levelUpUI.SetActive(true);
+        level++;
+    }
+
+    public void EndLevelUp() {
+        levelUpUI.SetActive(false);
+        experience -= expThreshold;
+        SetPause(false);
     }
 
     void OnCollisionStay2D(Collision2D c) {
