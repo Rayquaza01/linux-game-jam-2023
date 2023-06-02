@@ -21,7 +21,6 @@ public class SwordDamage : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D c) {
         if (c.gameObject.CompareTag("Enemy")) {
-            Debug.Log("Sword hit!");
             Enemy e = c.gameObject.GetComponent<Enemy>();
             e.ApplyDamage(damage);
         }
