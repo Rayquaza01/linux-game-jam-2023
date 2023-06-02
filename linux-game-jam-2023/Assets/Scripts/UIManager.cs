@@ -8,6 +8,10 @@ public class UIManager : MonoBehaviour {
     public TMP_Text health;
     public TMP_Text experience;
 
+    public TMP_Text maxHealth;
+    public TMP_Text pierce;
+    public TMP_Text damage;
+
     // Start is called before the first frame update
     void Start() {
     }
@@ -22,5 +26,17 @@ public class UIManager : MonoBehaviour {
 
     public void SetExperience(float e) {
         experience.text = "Experience: " + e.ToString();
+    }
+
+    public void SetMaxHealth(float h) {
+        maxHealth.text = "Max Health: " + h.ToString();
+    }
+
+    public void SetPierce(int p) {
+        pierce.text = "Pierce: " + p.ToString();
+    }
+
+    public void SetDamage(float d) {
+        damage.text = "Damage: " + d.ToString();
     }
 }
