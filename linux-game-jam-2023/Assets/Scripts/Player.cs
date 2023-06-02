@@ -3,14 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
+    // player's movement speed
     public float speed = 5f;
     Rigidbody2D rb;
 
+    // player's max health
+    public float maxHealth = 100f;
+    // player's default health
     public float health = 100f;
 
-    public float experience = 0f;
+    // amount of exp orbs player has picked up
+    public int experience = 0;
+    // player's current level
+    public int level = 1;
+
+    // projectile for gun
+    public GameObject projectile;
 
     public UIManager ui;
+
+    public bool paused;
+
 
     // Start is called before the first frame update
     void Start() {
@@ -33,6 +46,18 @@ public class Player : MonoBehaviour {
         if (Input.GetKey(KeyCode.A)) {
             transform.position += -transform.right * speed * Time.deltaTime;
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            if (Time.timeScale == 0) {
+                Time.timeScale = 1;
+            } else {
+                Time.timeScale = 0;
+            }
+        }
+
+        if (Input.GetMouseButtonDown(0) && !paused) {
+            Instantiate(projectile, transform.position, transform.rotation);
+        }
     }
 
     public void DamagePlayer(float dmg) {
@@ -43,14 +68,23 @@ public class Player : MonoBehaviour {
 
     public void HealPlayer(float heal) {
         health += heal;
-        if (health >= 100f) {
-            health = 100f;
+        if (health >= maxHealth) {
+            health = maxHealth;
         }
 
         ui.SetHealth(health);
     }
 
-    public void AddExperience(float exp) {
+    public void TogglePause() {
+        SetPause(!paused);
+    }
+
+    public void SetPause(bool p) {
+        paused = p;
+        Time.timeScale = p ? 0 : 1;
+    }
+
+    public void AddExperience(int exp) {
         experience += exp;
 
         ui.SetExperience(experience);
