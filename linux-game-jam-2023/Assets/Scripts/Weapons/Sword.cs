@@ -8,7 +8,13 @@ public class Sword : MonoBehaviour {
     // damage done to enemy during attack
     public float damage = 10f;
 
+    // amount of time in seconds sword stays out before swapping positions or disappearing
     float lingerCooldown = .2f;
+    // state of sword
+    //   0 : sword is waiting for cooldown before appearing
+    //   1 : cooldown finished! sword has appeared and is waiting for linger cooldown
+    //   2 : first swipe done! sword swapped position and is waiting for linger cooldown again
+    //   3 : second swipe done! reset to state 0
     float state = 0;
 
     public GameObject sword;
@@ -20,7 +26,6 @@ public class Sword : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        // this.gameObject.SetActive(false);
         sword.SetActive(false);
         swordDamage = sword.GetComponent<SwordDamage>();
         swordDamage.SetDamage(damage);
@@ -45,7 +50,7 @@ public class Sword : MonoBehaviour {
 
             state++;
 
-            if (state == 3) {
+            if (state > 2) {
                 state = 0;
                 sword.SetActive(false);
             }
