@@ -29,7 +29,7 @@ public class UIManager : MonoBehaviour {
     }
 
     public void SetMaxHealth(float h) {
-        maxHealth.text = "Max Health: " + h.ToString();
+        maxHealth.text = "Max HP: " + h.ToString();
     }
 
     public void SetPierce(int p) {
