@@ -21,7 +21,7 @@ public class Player : MonoBehaviour {
 
     // projectile for gun
     public GameObject projectile;
-    public Projectile projectileStats;
+    Projectile projectileStats;
 
     public UIManager ui;
     public GameObject levelUpUI;
@@ -82,6 +82,7 @@ public class Player : MonoBehaviour {
     }
 
     public void UpgradePierce(int amt) {
+        Debug.Log("Upgrading pierce by " + amt.ToString());
         projectileStats.UpgradePierce(amt);
 
         ui.SetPierce(projectileStats.pierce);
