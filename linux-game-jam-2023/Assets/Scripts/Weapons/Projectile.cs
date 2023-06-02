@@ -17,6 +17,7 @@ public class Projectile : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        Debug.Log("Pierce at start is " + pierce);
         Destroy(this.gameObject, 5);
 
         Vector2 heading = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
@@ -32,12 +33,12 @@ public class Projectile : MonoBehaviour {
         transform.position += new Vector3(direction.x, direction.y) * speed * Time.deltaTime;
     }
 
-    public void UpgradePierce(int amt) {
-        pierce += amt;
+    public void SetPierce(int p) {
+        pierce = p;
     }
 
-    public void UpgradeDamage(float amt) {
-        damage += amt;
+    public void SetDamage(float d) {
+        damage = d;
     }
 
     void OnCollisionEnter2D(Collision2D c) {
