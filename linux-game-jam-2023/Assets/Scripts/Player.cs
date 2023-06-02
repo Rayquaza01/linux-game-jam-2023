@@ -19,12 +19,12 @@ public class Player : MonoBehaviour {
     // player's current level
     public int level = 1;
 
-    // projectile for gun
-    public GameObject projectile;
-    Projectile projectileStats;
-
     public UIManager ui;
     public GameObject levelUpUI;
+
+    // weapons
+    Gun gun;
+    Sword sword;
 
     public bool paused;
 
@@ -32,7 +32,9 @@ public class Player : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         rb = GetComponent<Rigidbody2D>();
-        projectileStats = projectile.GetComponent<Projectile>();
+
+        gun = GetComponent<Gun>();
+        sword = GetComponent<Sword>();
     }
 
     // Update is called once per frame
@@ -55,7 +57,7 @@ public class Player : MonoBehaviour {
         }
 
         if (Input.GetMouseButtonDown(0) && !paused) {
-            Instantiate(projectile, transform.position, transform.rotation);
+            gun.Fire();
         }
     }
 
@@ -82,16 +84,15 @@ public class Player : MonoBehaviour {
     }
 
     public void UpgradePierce(int amt) {
-        Debug.Log("Upgrading pierce by " + amt.ToString());
-        projectileStats.UpgradePierce(amt);
+        gun.UpgradePierce(amt);
 
-        ui.SetPierce(projectileStats.pierce);
+        ui.SetPierce(gun.pierce);
     }
 
     public void UpgradeDamage(float amt) {
-        projectileStats.UpgradeDamage(amt);
+        gun.UpgradeDamage(amt);
 
-        ui.SetDamage(projectileStats.damage);
+        ui.SetDamage(gun.damage);
     }
 
     public void TogglePause() {
