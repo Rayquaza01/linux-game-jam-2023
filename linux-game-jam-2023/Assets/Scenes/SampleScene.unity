@@ -2291,6 +2291,7 @@ GameObject:
   - component: {fileID: 2103394589}
   - component: {fileID: 2103394588}
   - component: {fileID: 2103394591}
+  - component: {fileID: 2103394594}
   - component: {fileID: 2103394593}
   - component: {fileID: 2103394590}
   - component: {fileID: 2103394592}
@@ -2408,7 +2409,6 @@ MonoBehaviour:
   experience: 0
   expThreshold: 10
   level: 1
-  projectile: {fileID: 1805796446893295043, guid: d7ade8a3098019958a8f27b9ed0d4209, type: 3}
   ui: {fileID: 1583019921}
   levelUpUI: {fileID: 1093403280}
   paused: 0
@@ -2454,6 +2454,21 @@ MonoBehaviour:
   damage: 10
   sword: {fileID: 712581389}
   equipped: 0
+--- !u!114 &2103394594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103394587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d713b4a92102484c9035bb80ce50cc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 1805796446893295043, guid: d7ade8a3098019958a8f27b9ed0d4209, type: 3}
+  damage: 10
+  pierce: 2
 --- !u!1001 &816207595565618276
 PrefabInstance:
   m_ObjectHideFlags: 0

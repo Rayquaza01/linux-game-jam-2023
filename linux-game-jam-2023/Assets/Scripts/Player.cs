@@ -122,7 +122,7 @@ public class Player : MonoBehaviour {
 
     public void EndLevelUp() {
         levelUpUI.SetActive(false);
-        experience -= expThreshold;
+        AddExperience(-expThreshold);
         SetPause(false);
     }
 
