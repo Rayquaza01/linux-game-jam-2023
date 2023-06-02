@@ -32,6 +32,14 @@ public class Projectile : MonoBehaviour {
         transform.position += new Vector3(direction.x, direction.y) * speed * Time.deltaTime;
     }
 
+    public void UpgradePierce(int amt) {
+        pierce += amt;
+    }
+
+    public void UpgradeDamage(float amt) {
+        damage += amt;
+    }
+
     void OnCollisionEnter2D(Collision2D c) {
         Debug.Log("Collided");
         if (c.gameObject.CompareTag("Enemy")) {

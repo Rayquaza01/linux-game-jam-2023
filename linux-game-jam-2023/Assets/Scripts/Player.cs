@@ -19,6 +19,7 @@ public class Player : MonoBehaviour {
 
     // projectile for gun
     public GameObject projectile;
+    public Projectile projectileStats;
 
     public UIManager ui;
 
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         rb = GetComponent<Rigidbody2D>();
+        projectileStats = projectile.GetComponent<Projectile>();
     }
 
     // Update is called once per frame
@@ -71,6 +73,24 @@ public class Player : MonoBehaviour {
         }
 
         ui.SetHealth(health);
+    }
+
+    public void UpgradeMaxHealth(float amt) {
+        maxHealth += amt;
+
+        ui.SetMaxHealth(maxHealth);
+    }
+
+    public void UpgradePierce(int amt) {
+        projectileStats.UpgradePierce(amt);
+
+        ui.SetPierce(projectileStats.pierce);
+    }
+
+    public void UpgradeDamage(float amt) {
+        projectileStats.UpgradeDamage(amt);
+
+        ui.SetDamage(projectileStats.damage);
     }
 
     public void TogglePause() {
