@@ -19,6 +19,8 @@ public class Player : MonoBehaviour {
     // player's current level
     public int level = 1;
 
+    List<string> equipped;
+
     public UIManager ui;
     public GameObject levelUpUI;
 
@@ -35,6 +37,12 @@ public class Player : MonoBehaviour {
 
         gun = GetComponent<Gun>();
         sword = GetComponent<Sword>();
+
+        equipped = new List<string>();
+
+        equipped.Add("Player");
+        equipped.Add("Gun");
+        if (sword.equipped) equipped.Add("Sword");
     }
 
     // Update is called once per frame
@@ -117,6 +125,8 @@ public class Player : MonoBehaviour {
     public void LevelUp() {
         SetPause(true);
         levelUpUI.SetActive(true);
+        levelUpUI.GetComponent<LevelUp>().RollUpgrades(equipped);
+
         level++;
     }
 

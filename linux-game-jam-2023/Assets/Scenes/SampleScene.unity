@@ -2453,7 +2453,7 @@ MonoBehaviour:
   cooldown: 2
   damage: 10
   sword: {fileID: 712581389}
-  equipped: 0
+  equipped: 1
 --- !u!114 &2103394594
 MonoBehaviour:
   m_ObjectHideFlags: 0
