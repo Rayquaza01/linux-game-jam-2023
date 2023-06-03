@@ -25,6 +25,17 @@ public class Gun : MonoBehaviour {
         Instantiate(projectile, transform.position, transform.rotation);
     }
 
+    public void Upgrade(string type) {
+        switch (type) {
+            case "DAMAGE":
+                UpgradeDamage(5);
+                break;
+            case "PIERCE":
+                UpgradePierce(1);
+                break;
+        }
+    }
+
     public void UpgradeDamage(float amt) {
         damage += amt;
         projectileObj.SetDamage(damage);

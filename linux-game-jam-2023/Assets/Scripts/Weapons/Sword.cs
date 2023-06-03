@@ -57,6 +57,20 @@ public class Sword : MonoBehaviour {
         }
     }
 
+    public void Upgrade(string type) {
+        switch (type) {
+            case "EQUIP":
+                Equip(true);
+                break;
+            case "DAMAGE":
+                UpgradeDamage(5);
+                break;
+            case "COOLDOWN":
+                UpgradeCooldown(0.1f);
+                break;
+        }
+    }
+
     public void Equip(bool e) {
         equipped = e;
     }

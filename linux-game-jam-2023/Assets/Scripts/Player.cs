@@ -103,6 +103,14 @@ public class Player : MonoBehaviour {
         ui.SetDamage(gun.damage);
     }
 
+    void Upgrade(string type) {
+        switch (type) {
+            case "MAX_HP":
+                UpgradeMaxHealth(5);
+                break;
+        }
+    }
+
     public void TogglePause() {
         SetPause(!paused);
     }
@@ -130,9 +138,26 @@ public class Player : MonoBehaviour {
         level++;
     }
 
-    public void EndLevelUp() {
+    public void EndLevelUp(KeyValuePair<string, string> upgrade) {
         levelUpUI.SetActive(false);
         AddExperience(-expThreshold);
+
+        switch (upgrade.Key) {
+            case "Player":
+                Upgrade(upgrade.Value);
+                break;
+            case "Gun":
+                gun.Upgrade(upgrade.Key);
+                break;
+            case "Sword":
+                sword.Upgrade(upgrade.Value);
+                break;
+        }
+
+        if (upgrade.Value == "EQUIP") {
+            equipped.Add(upgrade.Key);
+        }
+
         SetPause(false);
     }
 
