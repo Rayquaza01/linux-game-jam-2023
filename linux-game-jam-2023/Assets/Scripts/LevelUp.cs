@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEngine.UI;
+using TMPro;
 
 public class LevelUp : MonoBehaviour {
     public string playerTag = "Player";
     GameObject player;
     Player playerObj;
 
-    public Button maxHealth;
-    public Button pierce;
-    public Button damage;
+    public Button[] buttons;
+    List<KeyValuePair<string, string>> upgrades = new List<KeyValuePair<string, string>>();
 
     List<string> AllUpgradableItems = new List<string>() {"Player", "Gun", "Sword"};
     Dictionary<string, List<string>> UpgradesByItem = new Dictionary<string, List<string>>() {
@@ -25,9 +25,12 @@ public class LevelUp : MonoBehaviour {
         player = GameObject.FindWithTag(playerTag);
         playerObj = player.GetComponent<Player>();
 
-        maxHealth.onClick.AddListener(UpgradeMaxHealth);
-        pierce.onClick.AddListener(UpgradePierce);
-        damage.onClick.AddListener(UpgradeDamage);
+        for (int i = 0; i < buttons.Length; i++) {
+            // fix weird c# lambda quirk
+            int btnIdx = i;
+            buttons[i].onClick.AddListener(() => Upgrade(btnIdx));
+            upgrades.Add(new KeyValuePair<string, string>("none", "none"));
+        }
 
         this.gameObject.SetActive(false);
     }
@@ -70,24 +73,18 @@ public class LevelUp : MonoBehaviour {
         // shuffle the list to choose random upgrades each time
         ShuffleList(options);
 
+        for (int i = 0; i < buttons.Length; i++) {
+            upgrades[i] = options[i];
+            buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = upgrades[i].Key + " " + upgrades[i].Value;
+        }
+
         Debug.Log("Start shuffle");
         foreach (KeyValuePair<string, string> i in options) {
             Debug.Log("Possible upgrade is " + i.Key + " " + i.Value);
         }
     }
 
-    void UpgradeMaxHealth() {
-        playerObj.UpgradeMaxHealth(5);
-        playerObj.EndLevelUp();
-    }
-
-    void UpgradePierce() {
-        playerObj.UpgradePierce(1);
-        playerObj.EndLevelUp();
-    }
-
-    void UpgradeDamage() {
-        playerObj.UpgradeDamage(5);
-        playerObj.EndLevelUp();
+    void Upgrade(int b) {
+        playerObj.EndLevelUp(upgrades[b]);
     }
 }
