@@ -19,6 +19,8 @@ public class Player : MonoBehaviour {
     // player's current level
     public int level = 1;
 
+    bool levelUpOpen = false;
+
     List<string> equipped;
 
     public UIManager ui;
@@ -43,6 +45,8 @@ public class Player : MonoBehaviour {
         equipped.Add("Player");
         equipped.Add("Gun");
         if (sword.equipped) equipped.Add("Sword");
+
+        ui.SetMaxHealth(health);
     }
 
     // Update is called once per frame
@@ -60,7 +64,7 @@ public class Player : MonoBehaviour {
             transform.position += -transform.right * speed * Time.deltaTime;
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape)) {
+        if (Input.GetKeyDown(KeyCode.Escape) && !levelUpOpen) {
             TogglePause();
         }
 
@@ -89,18 +93,6 @@ public class Player : MonoBehaviour {
         HealPlayer(amt);
 
         ui.SetMaxHealth(maxHealth);
-    }
-
-    public void UpgradePierce(int amt) {
-        gun.UpgradePierce(amt);
-
-        ui.SetPierce(gun.pierce);
-    }
-
-    public void UpgradeDamage(float amt) {
-        gun.UpgradeDamage(amt);
-
-        ui.SetDamage(gun.damage);
     }
 
     void Upgrade(string type) {
@@ -134,6 +126,7 @@ public class Player : MonoBehaviour {
         SetPause(true);
         levelUpUI.SetActive(true);
         levelUpUI.GetComponent<LevelUp>().RollUpgrades(equipped);
+        levelUpOpen = true;
 
         level++;
     }
@@ -147,7 +140,7 @@ public class Player : MonoBehaviour {
                 Upgrade(upgrade.Value);
                 break;
             case "Gun":
-                gun.Upgrade(upgrade.Key);
+                gun.Upgrade(upgrade.Value);
                 break;
             case "Sword":
                 sword.Upgrade(upgrade.Value);
@@ -157,6 +150,8 @@ public class Player : MonoBehaviour {
         if (upgrade.Value == "EQUIP") {
             equipped.Add(upgrade.Key);
         }
+
+        levelUpOpen = false;
 
         SetPause(false);
     }
