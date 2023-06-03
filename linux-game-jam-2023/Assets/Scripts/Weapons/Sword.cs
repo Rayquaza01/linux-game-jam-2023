@@ -24,11 +24,16 @@ public class Sword : MonoBehaviour {
 
     float timer = 0f;
 
+    public UIManager ui;
+
     // Start is called before the first frame update
     void Start() {
         sword.SetActive(false);
         swordDamage = sword.GetComponent<SwordDamage>();
         swordDamage.SetDamage(damage);
+
+        ui.SetSwordCooldown(cooldown);
+        ui.SetSwordDamage(damage);
     }
 
     // Update is called once per frame
@@ -77,10 +82,14 @@ public class Sword : MonoBehaviour {
 
     public void UpgradeCooldown(float amt) {
         cooldown -= amt;
+
+        ui.SetSwordCooldown(cooldown);
     }
 
     public void UpgradeDamage(float amt) {
         damage += amt;
         swordDamage.SetDamage(damage);
+
+        ui.SetSwordDamage(damage);
     }
 }

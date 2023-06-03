@@ -9,11 +9,16 @@ public class Gun : MonoBehaviour {
     public float damage = 10f;
     public int pierce = 2;
 
+    public UIManager ui;
+
     // Start is called before the first frame update
     void Start() {
         projectileObj = projectile.GetComponent<Projectile>();
         projectileObj.SetDamage(damage);
         projectileObj.SetPierce(pierce);
+
+        ui.SetGunDamage(damage);
+        ui.SetGunPierce(pierce);
     }
 
     // Update is called once per frame
@@ -26,6 +31,7 @@ public class Gun : MonoBehaviour {
     }
 
     public void Upgrade(string type) {
+        Debug.Log("Gun upgrade type " + type);
         switch (type) {
             case "DAMAGE":
                 UpgradeDamage(5);
@@ -39,10 +45,15 @@ public class Gun : MonoBehaviour {
     public void UpgradeDamage(float amt) {
         damage += amt;
         projectileObj.SetDamage(damage);
+
+        Debug.Log("Gun damage at " + damage);
+        ui.SetGunDamage(damage);
     }
 
     public void UpgradePierce(int amt) {
         pierce += amt;
         projectileObj.SetPierce(pierce);
+
+        ui.SetGunPierce(pierce);
     }
 }

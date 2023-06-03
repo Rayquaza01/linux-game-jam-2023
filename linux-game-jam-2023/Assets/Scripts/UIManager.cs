@@ -9,8 +9,11 @@ public class UIManager : MonoBehaviour {
     public TMP_Text experience;
 
     public TMP_Text maxHealth;
-    public TMP_Text pierce;
-    public TMP_Text damage;
+    public TMP_Text gunPierce;
+    public TMP_Text gunDamage;
+
+    public TMP_Text swordCooldown;
+    public TMP_Text swordDamage;
 
     // Start is called before the first frame update
     void Start() {
@@ -32,11 +35,19 @@ public class UIManager : MonoBehaviour {
         maxHealth.text = "Max HP: " + h.ToString();
     }
 
-    public void SetPierce(int p) {
-        pierce.text = "Pierce: " + p.ToString();
+    public void SetGunPierce(int p) {
+        gunPierce.text = "Gun Pierce: " + p.ToString();
     }
 
-    public void SetDamage(float d) {
-        damage.text = "Damage: " + d.ToString();
+    public void SetGunDamage(float d) {
+        gunDamage.text = "Gun Damage: " + d.ToString();
+    }
+
+    public void SetSwordCooldown(float c) {
+        swordCooldown.text = "Sword Cooldown: " + c.ToString() + "s";
+    }
+
+    public void SetSwordDamage(float d) {
+        swordDamage.text = "Sword Damage: " + d.ToString();
     }
 }
