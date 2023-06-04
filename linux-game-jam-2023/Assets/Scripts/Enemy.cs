@@ -41,6 +41,23 @@ public class Enemy : MonoBehaviour {
         transform.position += new Vector3(normalized.x, normalized.y);
     }
 
+    public void SetXP(int amt) {
+        XPAmount = amt;
+    }
+
+    public void SetHealth(float amt) {
+        health = amt;
+    }
+
+    public void SetSpeed(float amt) {
+        speed = amt;
+        rotSpeed = amt;
+    }
+
+    public void SetDamageRate(float amt) {
+        damageRate = amt;
+    }
+
     public void ApplyDamage(float dmg) {
         health -= dmg;
         if (health <= 0) {
