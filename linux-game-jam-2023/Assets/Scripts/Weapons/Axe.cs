@@ -23,6 +23,9 @@ public class Axe : MonoBehaviour {
 
     public void Upgrade(string type) {
         switch (type) {
+            case "EQUIP":
+                Equip();
+                break;
             case "COOLDOWN":
                 UpgradeCooldown(0.1f);
                 break;
