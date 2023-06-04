@@ -32,10 +32,21 @@ public class Spawner : MonoBehaviour {
             GameObject e = Instantiate(toSpawn, transform.position, transform.rotation);
             Enemy enemy = e.GetComponent<Enemy>();
 
-            enemy.SetXP(experience);
-            enemy.SetSpeed(speed);
-            enemy.SetHealth(health);
-            enemy.SetDamageRate(damageRate);
+            float rand = Random.value;
+
+            if (rand <= 0.05f) { // 5% chance of strong enemy
+                e.transform.localScale *= 2;
+                enemy.SetXP(experience * 5);
+                enemy.SetSpeed(speed * 0.5f);
+                enemy.SetHealth(health * 10);
+                enemy.SetDamageRate(damageRate * 2);
+            } else {
+                enemy.SetXP(experience);
+                enemy.SetSpeed(speed);
+                enemy.SetHealth(health);
+                enemy.SetDamageRate(damageRate);
+            }
+
             currentTime = 0;
         }
     }
