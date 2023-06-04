@@ -13,11 +13,12 @@ public class LevelUp : MonoBehaviour {
     public Button[] buttons;
     List<KeyValuePair<string, string>> upgrades = new List<KeyValuePair<string, string>>();
 
-    List<string> AllUpgradableItems = new List<string>() {"Player", "Gun", "Sword"};
+    List<string> AllUpgradableItems = new List<string>() {"Player", "Gun", "Sword", "Axe"};
     Dictionary<string, List<string>> UpgradesByItem = new Dictionary<string, List<string>>() {
         { "Player", new List<string>() { "MAX_HP" } },
         { "Gun", new List<string>() { "DAMAGE", "PIERCE" } },
-        { "Sword", new List<string>() { "DAMAGE", "COOLDOWN" } }
+        { "Sword", new List<string>() { "DAMAGE", "COOLDOWN" } },
+        { "Axe", new List<string>() { "DAMAGE", "COOLDOWN", "AMOUNT" } }
     };
 
     // Start is called before the first frame update

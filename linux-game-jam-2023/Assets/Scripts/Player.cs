@@ -29,6 +29,7 @@ public class Player : MonoBehaviour {
     // weapons
     Gun gun;
     Sword sword;
+    Axe axe;
 
     public bool paused;
 
@@ -39,12 +40,14 @@ public class Player : MonoBehaviour {
 
         gun = GetComponent<Gun>();
         sword = GetComponent<Sword>();
+        axe = GetComponent<Axe>();
 
         equipped = new List<string>();
 
         equipped.Add("Player");
         equipped.Add("Gun");
         if (sword.equipped) equipped.Add("Sword");
+        if (axe.equipped) equipped.Add("Axe");
 
         ui.SetMaxHealth(health);
     }
@@ -144,6 +147,9 @@ public class Player : MonoBehaviour {
                 break;
             case "Sword":
                 sword.Upgrade(upgrade.Value);
+                break;
+            case "Axe":
+                axe.Upgrade(upgrade.Value);
                 break;
         }
 
