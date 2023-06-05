@@ -23,9 +23,12 @@ public class Player : MonoBehaviour {
 
     List<string> equipped;
 
-    public UIManager ui;
-    public HudManager hud;
-    public GameOverScreen gameOverScreen;
+    public GameObject uiGameObject;
+    UIManager ui;
+    public GameObject hudGameObject;
+    HudManager hud;
+    public GameObject gameOverScreenGameObject;
+    GameOverScreen gameOverScreen;
     public GameObject levelUpUI;
 
     List<Spawner> spawners = new List<Spawner>();
@@ -55,6 +58,10 @@ public class Player : MonoBehaviour {
         if (sword.equipped) equipped.Add("Sword");
         if (axe.equipped) equipped.Add("Axe");
 
+        ui = uiGameObject.GetComponent<UIManager>();
+        hud = hudGameObject.GetComponent<HudManager>();
+        gameOverScreen = gameOverScreenGameObject.GetComponent<GameOverScreen>();
+
         ui.SetMaxHealth(maxHealth);
 
         hud.UpdateHealthBar(health, maxHealth);
@@ -63,6 +70,8 @@ public class Player : MonoBehaviour {
         foreach (GameObject spawner in GameObject.FindGameObjectsWithTag("Spawner")) {
             spawners.Add(spawner.GetComponent<Spawner>());
         }
+
+        SetPause(false);
     }
 
     // Update is called once per frame

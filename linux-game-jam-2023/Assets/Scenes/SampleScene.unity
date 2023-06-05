@@ -3481,9 +3481,9 @@ MonoBehaviour:
   experience: 0
   expThreshold: 10
   level: 1
-  ui: {fileID: 1583019921}
-  hud: {fileID: 818108489}
-  gameOverScreen: {fileID: 440126506}
+  uiGameObject: {fileID: 1583019916}
+  hudGameObject: {fileID: 818108488}
+  gameOverScreenGameObject: {fileID: 440126501}
   levelUpUI: {fileID: 1093403280}
   paused: 0
   gameOver: 0
