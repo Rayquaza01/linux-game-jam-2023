@@ -15,7 +15,7 @@ public class Player : MonoBehaviour {
     // amount of exp orbs player has picked up
     public int experience = 0;
     // amount of exp needed to level up
-    public int expThreshold = 10;
+    public float expThreshold = 10f;
     // player's current level
     public int level = 1;
 
@@ -173,6 +173,8 @@ public class Player : MonoBehaviour {
 
         level++;
 
+        expThreshold *= 1.1f;
+
         // every 10 levels, scale spawners
         if (level % 10 == 0) {
             foreach (Spawner spawner in spawners) {
@@ -184,7 +186,7 @@ public class Player : MonoBehaviour {
 
     public void EndLevelUp(KeyValuePair<string, string> upgrade) {
         levelUpUI.SetActive(false);
-        AddExperience(-expThreshold);
+        AddExperience(-(int)expThreshold);
 
         switch (upgrade.Key) {
             case "Player":
