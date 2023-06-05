@@ -11,7 +11,7 @@ public class AxeProjectile : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         rb = GetComponent<Rigidbody2D>();
-        // Destroy(this.gameObject, 5);
+        Destroy(this.gameObject, 5);
 
         Vector2 direction = new Vector2((Random.value - 0.5f) * 2, 1);
         Vector2 force = (direction / direction.magnitude) * speed;
