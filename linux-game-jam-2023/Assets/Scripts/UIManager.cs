@@ -5,15 +5,16 @@ using UnityEngine;
 using TMPro;
 
 public class UIManager : MonoBehaviour {
-    public TMP_Text health;
-    public TMP_Text experience;
-
     public TMP_Text maxHealth;
     public TMP_Text gunPierce;
     public TMP_Text gunDamage;
 
     public TMP_Text swordCooldown;
     public TMP_Text swordDamage;
+
+    public TMP_Text axeCooldown;
+    public TMP_Text axeDamage;
+    public TMP_Text axeAmount;
 
     // Start is called before the first frame update
     void Start() {
@@ -49,5 +50,17 @@ public class UIManager : MonoBehaviour {
 
     public void SetSwordDamage(float d) {
         swordDamage.text = "Sword Damage: " + d.ToString();
+    }
+
+    public void SetAxeCooldown(float c) {
+        axeCooldown.text = "Axe Cooldown: " + c.ToString() + "s";
+    }
+
+    public void SetAxeDamage(float d) {
+        axeDamage.text = "Axe Damage: " + d.ToString();
+    }
+
+    public void SetAxeAmount(int a) {
+        axeAmount.text = "Axe Damage: " + a.ToString();
     }
 }

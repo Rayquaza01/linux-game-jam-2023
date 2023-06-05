@@ -44,17 +44,17 @@ public class Axe : MonoBehaviour {
 
     public void UpgradeCooldown(float amt) {
         cooldown -= amt;
-        // ui.SetAxeCooldown(cooldown);
+        ui.SetAxeCooldown(cooldown);
     }
 
     public void UpgradeDamage(float amt) {
         damage += amt;
-        // ui.SetAxeDamage(damage);
+        ui.SetAxeDamage(damage);
     }
 
     public void UpgradeAmount(int amt) {
         amount += amt;
-        // ui.SetAxeAmount(amount);
+        ui.SetAxeAmount(amount);
     }
 
     // Update is called once per frame
