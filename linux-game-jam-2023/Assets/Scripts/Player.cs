@@ -175,8 +175,8 @@ public class Player : MonoBehaviour {
 
         expThreshold *= 1.1f;
 
-        // every 10 levels, scale spawners
-        if (level % 10 == 0) {
+        // every 5 levels, scale spawners
+        if (level % 5 == 0) {
             foreach (Spawner spawner in spawners) {
                 spawner.LevelUp();
             }
