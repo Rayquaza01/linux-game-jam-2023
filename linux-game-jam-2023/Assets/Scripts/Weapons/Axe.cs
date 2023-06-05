@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Axe : MonoBehaviour {
-    public float cooldown = 1f;
+    public float cooldown = 3f;
     public float damage = 10f;
     public int amount = 1;
 
