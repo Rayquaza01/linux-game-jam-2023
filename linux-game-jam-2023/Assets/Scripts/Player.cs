@@ -24,7 +24,10 @@ public class Player : MonoBehaviour {
     List<string> equipped;
 
     public UIManager ui;
+    public HudManager hud;
     public GameObject levelUpUI;
+
+    List<Spawner> spawners = new List<Spawner>();
 
     // weapons
     Gun gun;
@@ -49,7 +52,14 @@ public class Player : MonoBehaviour {
         if (sword.equipped) equipped.Add("Sword");
         if (axe.equipped) equipped.Add("Axe");
 
-        ui.SetMaxHealth(health);
+        ui.SetMaxHealth(maxHealth);
+
+        hud.UpdateHealthBar(health, maxHealth);
+        hud.UpdateExperienceBar(experience, expThreshold);
+
+        foreach (GameObject spawner in GameObject.FindGameObjectsWithTag("Spawner")) {
+            spawners.Add(spawner.GetComponent<Spawner>());
+        }
     }
 
     // Update is called once per frame
@@ -79,7 +89,7 @@ public class Player : MonoBehaviour {
     public void DamagePlayer(float dmg) {
         health -= dmg;
 
-        ui.SetHealth(health);
+        hud.UpdateHealthBar(health, maxHealth);
     }
 
     public void HealPlayer(float heal) {
@@ -88,7 +98,7 @@ public class Player : MonoBehaviour {
             health = maxHealth;
         }
 
-        ui.SetHealth(health);
+        hud.UpdateHealthBar(health, maxHealth);
     }
 
     public void UpgradeMaxHealth(float amt) {
@@ -118,7 +128,8 @@ public class Player : MonoBehaviour {
     public void AddExperience(int exp) {
         experience += exp;
 
-        ui.SetExperience(experience);
+        // ui.SetExperience(experience);
+        hud.UpdateExperienceBar(experience, expThreshold);
 
         if (experience >= expThreshold) {
             LevelUp();
@@ -132,6 +143,14 @@ public class Player : MonoBehaviour {
         levelUpOpen = true;
 
         level++;
+
+        // every 10 levels, scale spawners
+        if (level % 10 == 0) {
+            foreach (Spawner spawner in spawners) {
+                spawner.LevelUp();
+            }
+        }
+
     }
 
     public void EndLevelUp(KeyValuePair<string, string> upgrade) {

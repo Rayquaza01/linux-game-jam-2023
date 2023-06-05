@@ -23,13 +23,13 @@ public class UIManager : MonoBehaviour {
     void Update() {
     }
 
-    public void SetHealth(float h) {
-        health.text = "Health: " + h.ToString();
-    }
+    // public void SetHealth(float h) {
+    //     health.text = "Health: " + h.ToString();
+    // }
 
-    public void SetExperience(float e) {
-        experience.text = "Experience: " + e.ToString();
-    }
+    // public void SetExperience(float e) {
+    //     experience.text = "Experience: " + e.ToString();
+    // }
 
     public void SetMaxHealth(float h) {
         maxHealth.text = "Max HP: " + h.ToString();

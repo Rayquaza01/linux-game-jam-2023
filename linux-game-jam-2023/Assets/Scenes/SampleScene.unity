@@ -2568,6 +2568,7 @@ GameObject:
   - component: {fileID: 2103394591}
   - component: {fileID: 2103394594}
   - component: {fileID: 2103394593}
+  - component: {fileID: 2103394595}
   - component: {fileID: 2103394590}
   - component: {fileID: 2103394592}
   m_Layer: 6
@@ -2746,6 +2747,24 @@ MonoBehaviour:
   damage: 10
   pierce: 2
   ui: {fileID: 1583019921}
+--- !u!114 &2103394595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103394587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 316b581ff3b05c0fb8de6e2601b5f4f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 3
+  damage: 10
+  amount: 1
+  equipped: 0
+  projectile: {fileID: 1805796446893295043, guid: 1ffd4ee88ccf2e8ffb7be50bf5f2b0ad, type: 3}
+  ui: {fileID: 1583019921}
 --- !u!1001 &816207595565618276
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2755,6 +2774,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 816207595553861314, guid: baa9936a1473070ef94f9739a1817548, type: 3}
       propertyPath: m_Name
+      value: Spawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 816207595553861314, guid: baa9936a1473070ef94f9739a1817548, type: 3}
+      propertyPath: m_TagString
       value: Spawner
       objectReference: {fileID: 0}
     - target: {fileID: 816207595553861315, guid: baa9936a1473070ef94f9739a1817548, type: 3}
