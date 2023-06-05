@@ -78,11 +78,6 @@ public class LevelUp : MonoBehaviour {
             upgrades[i] = options[i];
             buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = upgrades[i].Key + " " + upgrades[i].Value;
         }
-
-        Debug.Log("Start shuffle");
-        foreach (KeyValuePair<string, string> i in options) {
-            Debug.Log("Possible upgrade is " + i.Key + " " + i.Value);
-        }
     }
 
     void Upgrade(int b) {

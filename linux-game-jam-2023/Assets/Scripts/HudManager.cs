@@ -22,7 +22,6 @@ public class HudManager : MonoBehaviour {
 
     public void UpdateHealthBar(float health, float maxHealth) {
         healthBar.fillAmount = Mathf.Clamp(health / maxHealth, 0, 1);
-        Debug.Log("Updating health bar");
     }
 
     public void UpdateExperienceBar(int exp, int expThreshold) {

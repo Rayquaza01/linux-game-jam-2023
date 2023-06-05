@@ -31,7 +31,6 @@ public class Gun : MonoBehaviour {
     }
 
     public void Upgrade(string type) {
-        Debug.Log("Gun upgrade type " + type);
         switch (type) {
             case "DAMAGE":
                 UpgradeDamage(5);
@@ -46,7 +45,6 @@ public class Gun : MonoBehaviour {
         damage += amt;
         projectileObj.SetDamage(damage);
 
-        Debug.Log("Gun damage at " + damage);
         ui.SetGunDamage(damage);
     }
 
