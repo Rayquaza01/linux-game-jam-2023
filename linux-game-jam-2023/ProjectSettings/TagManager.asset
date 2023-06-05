@@ -11,6 +11,7 @@ TagManager:
   - Vacuum
   - Health
   - KillAll
+  - Spawner
   layers:
   - Default
   - TransparentFX

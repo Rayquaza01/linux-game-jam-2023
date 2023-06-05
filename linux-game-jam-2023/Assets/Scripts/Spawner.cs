@@ -50,4 +50,12 @@ public class Spawner : MonoBehaviour {
             currentTime = 0;
         }
     }
+
+    public void LevelUp() {
+        spawnFreq -= 0.1f;
+
+        experience++;
+        health += 5;
+        damageRate += 1;
+    }
 }
