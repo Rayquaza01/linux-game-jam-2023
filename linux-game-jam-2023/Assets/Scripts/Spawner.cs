@@ -16,6 +16,10 @@ public class Spawner : MonoBehaviour {
 
     public bool active = true;
 
+    public int type = 0;
+    public float spawnerMoveSpeed = 5f;
+    int direction = 1;
+
     float currentTime = 0f;
 
     // Start is called before the first frame update
@@ -26,6 +30,28 @@ public class Spawner : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         if (!active) return;
+
+        if (type == 0) {
+            transform.position = transform.position + transform.right * spawnerMoveSpeed * Time.deltaTime * direction;
+            if (transform.position.x > 11) {
+                direction = -1;
+            }
+
+            if (transform.position.x < -11) {
+                direction = 1;
+            }
+        }
+
+        if (type == 1) {
+            transform.position = transform.position + transform.up * spawnerMoveSpeed * Time.deltaTime * direction;
+            if (transform.position.y > 5) {
+                direction = -1;
+            }
+
+            if (transform.position.y < -5) {
+                direction = 1;
+            }
+        }
 
         currentTime += Time.deltaTime;
         if (currentTime >= spawnFreq) {
