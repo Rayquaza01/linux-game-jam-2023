@@ -52,7 +52,7 @@ public class Spawner : MonoBehaviour {
     }
 
     public void LevelUp() {
-        spawnFreq -= 0.1f;
+        spawnFreq *= 0.8f;
 
         experience++;
         health += 5;
