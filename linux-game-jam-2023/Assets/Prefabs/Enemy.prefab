@@ -101,6 +101,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetTag: Player
   ExperienceDrop: {fileID: 4841052670928205925, guid: 3d220d5225fde6f159ed4548d864be6e, type: 3}
+  pickups:
+  - {fileID: 2570571455986671455, guid: b2a35ecdd20fb0552b2cf0b2b88d06ec, type: 3}
+  - {fileID: 2570571455986671455, guid: 43d8532d156e586aaa25450022d3e08d, type: 3}
+  - {fileID: 2570571455986671455, guid: def2944326e4e6592ac0840bd04afffe, type: 3}
   XPAmount: 1
   health: 10
   damageRate: 10

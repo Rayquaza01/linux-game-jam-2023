@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour {
 
     public GameObject ExperienceDrop;
 
+    public GameObject[] pickups;
+
     // amount of experience enemy drops on kil;
     public int XPAmount = 1;
     // amount of health enemy has
@@ -61,10 +63,18 @@ public class Enemy : MonoBehaviour {
     public void ApplyDamage(float dmg) {
         health -= dmg;
         if (health <= 0) {
-            GameObject e = Instantiate(ExperienceDrop, transform.position, new Quaternion(0, 0, 0, 0));
-            // set exp on orb to what enemy is set to drop
-            e.GetComponent<Experience>().SetExperience(XPAmount);
-            Destroy(this.gameObject);
+            float random = Random.value;
+
+
+            if (random <= 0.05f) {
+                int obj = Random.Range(0, pickups.Length);
+                Instantiate(pickups[obj], transform.position, new Quaternion(0, 0, 0, 0));
+            } else {
+                GameObject e = Instantiate(ExperienceDrop, transform.position, new Quaternion(0, 0, 0, 0));
+                // set exp on orb to what enemy is set to drop
+                e.GetComponent<Experience>().SetExperience(XPAmount);
+                Destroy(this.gameObject);
+            }
         }
     }
 }
