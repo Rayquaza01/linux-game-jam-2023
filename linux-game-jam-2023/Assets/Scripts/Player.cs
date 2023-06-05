@@ -25,6 +25,7 @@ public class Player : MonoBehaviour {
 
     public UIManager ui;
     public HudManager hud;
+    public GameOverScreen gameOverScreen;
     public GameObject levelUpUI;
 
     List<Spawner> spawners = new List<Spawner>();
@@ -34,8 +35,10 @@ public class Player : MonoBehaviour {
     Sword sword;
     Axe axe;
 
-    public bool paused;
+    public bool paused = false;
+    public bool gameOver = false;
 
+    public float score = 0;
 
     // Start is called before the first frame update
     void Start() {
@@ -64,6 +67,8 @@ public class Player : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        score += Time.deltaTime;
+
         if (Input.GetKey(KeyCode.W)) {
             transform.position += transform.up * speed * Time.deltaTime;
         }
@@ -77,11 +82,11 @@ public class Player : MonoBehaviour {
             transform.position += -transform.right * speed * Time.deltaTime;
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && !levelUpOpen) {
+        if (Input.GetKeyDown(KeyCode.Escape) && !levelUpOpen && !gameOver) {
             TogglePause();
         }
 
-        if (Input.GetMouseButtonDown(0) && !paused) {
+        if (Input.GetMouseButtonDown(0) && !paused && !gameOver) {
             gun.Fire();
         }
     }
@@ -90,6 +95,10 @@ public class Player : MonoBehaviour {
         health -= dmg;
 
         hud.UpdateHealthBar(health, maxHealth);
+
+        if (health <= 0) {
+            EndGame();
+        }
     }
 
     public void HealPlayer(float heal) {
@@ -116,6 +125,14 @@ public class Player : MonoBehaviour {
         }
     }
 
+    public void EndGame() {
+        gameOverScreen.gameObject.SetActive(true);
+        gameOverScreen.UpdateScore(score);
+
+        SetPause(true);
+        gameOver = true;
+    }
+
     public void TogglePause() {
         SetPause(!paused);
     }
@@ -123,6 +140,9 @@ public class Player : MonoBehaviour {
     public void SetPause(bool p) {
         paused = p;
         Time.timeScale = p ? 0 : 1;
+
+        // show weapon stats on pause screen
+        ui.gameObject.SetActive(p);
     }
 
     public void AddExperience(int exp) {
